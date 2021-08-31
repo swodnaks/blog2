@@ -2,11 +2,13 @@ class PostsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
   def index
     @posts = Post.all.order('created_at DESC')
+    @posts= Post.paginate(page: params[:page],per_page: 5)
   end
 
   def new
     @post = Post.new
   end
+
 
   def create
     @post = Post.new(posts_params)
