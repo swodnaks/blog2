@@ -26,6 +26,11 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
   end
 
+  def hashtags
+    tag = Tag.find_by(name:(params[:name]))
+    @posts = tag.posts
+  end
+
   def edit
     @post = Post.find(params[:id])
   end

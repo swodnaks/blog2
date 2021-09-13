@@ -6,8 +6,10 @@ Rails.application.routes.draw do
   end
   resources :posts do
     resources :likes
-  end    
+  end
   root "posts#index"
 
   get '/about', to: 'pages#about'
+
+  get '/posts/hashtag/:name', to: 'posts#hashtags'
 end
