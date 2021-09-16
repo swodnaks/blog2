@@ -12,4 +12,9 @@ Rails.application.routes.draw do
   get '/about', to: 'pages#about'
 
   get '/posts/hashtag/:name', to: 'posts#hashtags'
+
+  get 'users/:id/posts' => 'users#posts', :as => :user_posts
+
+  
+
 end

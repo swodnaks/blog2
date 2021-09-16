@@ -1,7 +1,7 @@
 class LikesController < ApplicationController
    before_action :find_post
   def create
-    if already_liked?
+    if already_liked? && own_post
        flash[:notice] = "You can't like more than once"
      else
        @post.likes.create(user_id: current_user.id)
@@ -18,5 +18,19 @@ end
      @post = Post.find(params[:post_id])
    end
 
+
+  def own_like
+   Like.where(user_id: current_user.id, post_id:
+   params[:user_post_id])
+  end
+end
+
+
+def own_post
+ if own_like
+    flash[:notice] = "You can't like your own post"
+  else
+    @post.likes.create(user_id: current_user.id)
+  end
 
 end
