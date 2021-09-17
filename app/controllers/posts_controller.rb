@@ -15,9 +15,9 @@ class PostsController < ApplicationController
 
     @post.user_id = current_user.id
 
-    if @post.save
+  if @post.save
       redirect_to @post
-    else
+  else
       render 'new'
     end
   end

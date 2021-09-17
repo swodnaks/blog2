@@ -15,6 +15,6 @@ Rails.application.routes.draw do
 
   get 'users/:id/posts' => 'users#posts', :as => :user_posts
 
-  
+
 
 end
