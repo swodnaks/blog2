@@ -7,7 +7,7 @@ class LikesController < ApplicationController
      else
     if own_like
        flash[:notice] = "You can't like your own post"
-    else
+     else
        @post.likes.create(user_id: current_user.id)
     end
      redirect_to post_path(@post)
