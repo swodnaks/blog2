@@ -26,7 +26,6 @@ end
      @post = Post.find(params[:post_id])
   end
 
-
   def own_like
      Like.find_by(user_id: @post.user_id == current_user.id , post_id:
      @post.user_id)
