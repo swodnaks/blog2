@@ -6,9 +6,9 @@ class LikesController < ApplicationController
     if already_liked?
       flash[:notice] = "You can't like more than once"
     elsif current_user.id == @post.user_id
-        flash[:notice] = "You can't like your own post"
+      flash[:notice] = "You can't like your own post"
     else
-     GenerateLikesJob.perform_now #перенес @post.likes.create(user_id: current_user.id)
+      GenerateLikesJob.perform_later(current_user.id, params[:post_id]) #@post.likes.create(user_id: current_user.id)
     end
     redirect_to post_path(@post)
   end

@@ -1,9 +1,8 @@
 class GenerateLikesJob < ApplicationJob
   queue_as :default
 
-  def perform
-    sleep 1
-    @post.likes.create(user_id: current_user.id)
-  end
 
+  def perform(user_id, post_id)
+    Like.create(user_id: user_id, post_id: post_id)
+  end
 end
