@@ -4,7 +4,7 @@
 
   <p class="date"><%= post.created_at.strftime("%B, %d, %Y") %></p>
 
-<%= link_to post.user.email, user_posts_path(post.user) %>
+  <%= link_to post.user.email, user_posts_path(post.user) %>
 
  </div>
 
