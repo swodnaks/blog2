@@ -73,8 +73,14 @@ Rails.application.configure do
 
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
 
-  config.active_job.queue_adapter = :sidekiq 
+  config.active_job.queue_adapter = :sidekiq
+  config.after_initialize do
+  Bullet.enable = true
 
+  Bullet.alert = true
+
+  Bullet.console = true
   # Uncomment if you wish to allow Action Cable access from any origin.
   # config.action_cable.disable_request_forgery_protection = true
+end
 end
