@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '2.6.3'
+ruby '3.0.2'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails', branch: 'main'
 gem 'rails', '~> 6.1.4', '>= 6.1.4.1'
@@ -12,11 +12,13 @@ gem 'puma', '~> 5.0'
 # Use SCSS for stylesheets
 gem 'sass-rails', '>= 6'
 # Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker
-gem 'webpacker', '~> 5.0'
+gem 'webpacker', '6.0.0.rc.5'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
 gem 'turbolinks', '~> 5'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.7'
+
+gem 'kaminari', '~> 1.1.0'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
 # Use Active Model has_secure_password
@@ -43,6 +45,7 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
 
+
   gem 'bullet'
 end
 
@@ -61,6 +64,18 @@ gem 'devise'
 
 gem "nested_form"
 
-gem 'will_paginate', '~> 3.1.0'
+gem 'will_paginate', '~> 3.3.0'
 
 gem 'sidekiq'
+
+gem 'jquery-rails'
+
+
+gem "select2-rails"
+
+gem 'faker'
+
+
+gem 'sassc-rails', '>= 2.1.0'
+
+gem 'bootstrap-sass', '~> 3.4.1'

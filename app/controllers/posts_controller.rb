@@ -1,9 +1,11 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
+
   def index
-    @posts = Post.includes([:user]).all.order('created_at DESC')
-    @posts= Post.includes([:user]).paginate(page: params[:page],per_page: 5)
+    @posts = Post.all_by_tags(params[:tag_ids])
+    @posts= Post.all_by_tags(params[:tag_ids])
   end
+
 
   def new
     @post = Post.new
@@ -26,17 +28,18 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
   end
 
-  def hashtags
-    tag = Tag.find_by(name:(params[:name]))
-    @posts = tag.posts
-  end
+  
 
   def edit
     @post = Post.find(params[:id])
   end
 
-def update
-  @post = Post.find(params[:id])
+
+
+
+
+  def update
+    @post = Post.find(params[:id])
 
   if @post.update(params[:post].permit(:tittle, :body))
     redirect_to @post
@@ -53,6 +56,6 @@ def destroy
 end
   private
     def posts_params
-      params.require(:post).permit(:title, :body)
+      params.require(:post).permit(:title, :body, tag_ids: [])
     end
 end

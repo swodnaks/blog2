@@ -16,26 +16,20 @@ class Post < ApplicationRecord
   belongs_to :user, :optional => true, :class_name => "User",
   :foreign_key => 'user_id'
 
-  has_and_belongs_to_many :tags
+  has_many :post_tags, dependent: :destroy
+  has_many :tags, through: :post_tags
 
-  after_create do
-    post= Post.find_by(id: self.id)
-    hashtags = self.body.scan(/#\w+/)
-    hashtags.uniq.map do |hashtag|
-      tag = Tag.find_or_create_by(name: hashtag.downcase.delete('#'))
-      post.tags << tag
-    end
-  end
 
-  before_update do
-    post= Post.find_by(id: self.id)
-    post.tags.clear
-    hashtags = self.body.scan(/#\w+/)
-    hashtags.uniq.map do |hashtag|
-      tag = Tag.find_or_create_by(name: hashtag.downcase.delete('#'))
-      post.tags << tag
-    end
-  end
+  scope :all_by_tags, ->(tags) do
+      posts = includes(:user)
+      if tags
+        posts = posts.joins(:tags).where(tags: tags).preload(:tags)
+      else
+        posts = posts.includes(:post_tags, :tags)
+      end
+      posts.order(created_at: :desc)
+ end
+
 
 
 
