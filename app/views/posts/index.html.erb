@@ -1,16 +1,38 @@
+<h1 class="mb-4"><%= t('.title') %></h1>
+
+<section class="mb-5">
+  <h2><%= t '.search_by_tags' %></h2>
+
+  <%= form_with url: posts_path, method: :get do |f| %>
+    <div class="mb-3">
+      <%= f.collection_select :tag_ids,[], :id, :title, {selected: params[:tag_ids]},
+        multiple: true, required: true,
+        class: 'js-multiple-select js-ajax-select w-100', data: {'ajax-url': '/api/tags'} %>
+        <%= f.submit ('Submit'), class: 'btn btn-primary' %>
+    </div>
+
+
+  <% end %>
+</section>
+
+
 <% @posts.each do |post| %>
  <div class="post_wrapper"
   <h2 class="title"><%= link_to post.title, post %></h2>
 
   <p class="date"><%= post.created_at.strftime("%B, %d, %Y") %></p>
 
+
   <%= link_to post.user.email, user_posts_path(post.user) %>
 
  </div>
 
 
+ <div class="my-2">
+     <%= render post.tags %>
+ </div>
+
 
 
 
 <% end %>
-<%= will_paginate @posts %>

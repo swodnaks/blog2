@@ -7,6 +7,11 @@ Rails.application.routes.draw do
   resources :posts do
     resources :likes
   end
+
+  namespace :api do
+    resources :tags, only: :index
+  end
+  
   root "posts#index"
 
   get '/about', to: 'pages#about'
