@@ -15,6 +15,8 @@ Rails.application.routes.draw do
 
   get 'users/:id/posts' => 'users#posts', :as => :user_posts
 
+  get "search", to: "search#search"
+
 
 
 end
