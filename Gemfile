@@ -64,3 +64,9 @@ gem "nested_form"
 gem 'will_paginate', '~> 3.1.0'
 
 gem 'sidekiq'
+
+gem 'elasticsearch-model'
+
+gem 'elasticsearch-rails'
+
+gem 'search_flip'
